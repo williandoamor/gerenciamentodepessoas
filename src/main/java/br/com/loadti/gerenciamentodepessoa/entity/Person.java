@@ -31,6 +31,6 @@ public class Person {
 
     private LocalDate birdthDate;
 
-    @OneToMany()
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private Stream<Phone> phones;
 }
