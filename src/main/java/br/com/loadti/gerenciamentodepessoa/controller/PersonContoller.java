@@ -1,6 +1,5 @@
 package br.com.loadti.gerenciamentodepessoa.controller;
 
-import br.com.loadti.gerenciamentodepessoa.dto.MessageResponseDTO;
 import br.com.loadti.gerenciamentodepessoa.entity.Person;
 import br.com.loadti.gerenciamentodepessoa.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +22,7 @@ public class PersonContoller {
     @PostMapping
     public String createPerson(@RequestBody Person person) {
         Person p =   repository.save(person);
-        return new MessageResponseDTO()
-
-                .build;
+        return "";
     }
 
 }
