@@ -3,6 +3,7 @@ package br.com.loadti.gerenciamentodepessoa.services;
 import br.com.loadti.gerenciamentodepessoa.dto.MessageResponseDTO;
 import br.com.loadti.gerenciamentodepessoa.dto.PersonDTO;
 import br.com.loadti.gerenciamentodepessoa.entity.Person;
+import br.com.loadti.gerenciamentodepessoa.exception.PersonNotFoundException;
 import br.com.loadti.gerenciamentodepessoa.mapper.PersonMapper;
 import br.com.loadti.gerenciamentodepessoa.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,11 @@ public class PersonService {
                 personMapper::toDTO
         ).collect(Collectors.toList());
 
+    }
+
+    public PersonDTO findById(Long id) throws PersonNotFoundException {
+        Person person = repository.findById(id).orElseThrow(() -> new PersonNotFoundException(id));
+
+        return personMapper.toDTO(person);
     }
 }
