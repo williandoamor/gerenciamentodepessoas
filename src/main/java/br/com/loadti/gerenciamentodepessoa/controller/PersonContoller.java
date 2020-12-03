@@ -41,4 +41,11 @@ public class PersonContoller {
         return personService.findById(id);
     }
 
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteForById(@PathVariable Long id) {
+
+        personService.delete(id);
+
+    }
 }
