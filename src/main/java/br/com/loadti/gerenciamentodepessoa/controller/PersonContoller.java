@@ -1,28 +1,28 @@
 package br.com.loadti.gerenciamentodepessoa.controller;
 
+import br.com.loadti.gerenciamentodepessoa.dto.MessageResponseDTO;
 import br.com.loadti.gerenciamentodepessoa.entity.Person;
-import br.com.loadti.gerenciamentodepessoa.repository.PersonRepository;
+import br.com.loadti.gerenciamentodepessoa.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/people")
 public class PersonContoller {
 
-    private PersonRepository repository;
+    private PersonService personService;
 
     @Autowired
-    public PersonContoller(PersonRepository repository) {
-        this.repository = repository;
+    public PersonContoller(PersonService personService) {
+        this.personService = personService;
     }
 
     @PostMapping
-    public String createPerson(@RequestBody Person person) {
-        Person p =   repository.save(person);
-        return "";
+    @ResponseStatus(HttpStatus.CREATED)
+    public MessageResponseDTO createPerson(@RequestBody Person person) {
+
+        return personService.createPerson(person);
     }
 
 }

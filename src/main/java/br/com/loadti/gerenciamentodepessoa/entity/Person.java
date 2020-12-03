@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.stream.Stream;
+import java.util.List;
 
 @Entity
 @Data
@@ -32,5 +32,5 @@ public class Person {
     private LocalDate birdthDate;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    private Stream<Phone> phones;
+    private List<Phone> phones;
 }
