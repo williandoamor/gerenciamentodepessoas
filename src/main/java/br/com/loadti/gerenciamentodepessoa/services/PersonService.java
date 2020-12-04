@@ -6,6 +6,7 @@ import br.com.loadti.gerenciamentodepessoa.entity.Person;
 import br.com.loadti.gerenciamentodepessoa.exception.PersonNotFoundException;
 import br.com.loadti.gerenciamentodepessoa.mapper.PersonMapper;
 import br.com.loadti.gerenciamentodepessoa.repository.PersonRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,16 +14,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+/*Injeta o construtor automaticamente*/
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonService {
 
     private PersonRepository repository;
 
     private final PersonMapper personMapper = PersonMapper.INSTANCE;
-
-    @Autowired
-    public PersonService(PersonRepository repository) {
-        this.repository = repository;
-    }
 
     public MessageResponseDTO createPerson(PersonDTO personDTO) {
         Person savedToSave = personMapper.toModel(personDTO);
