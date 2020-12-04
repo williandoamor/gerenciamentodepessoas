@@ -33,19 +33,19 @@ public class PersonContoller {
         return personService.listAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/pesquisar/{id}")
     public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
 
         return personService.findById(id);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/update/{id}")
     public MessageResponseDTO updateByID(@PathVariable Long id, @RequestBody PersonDTO personDTO) throws PersonNotFoundException {
 
         return  personService.updateById(id, personDTO);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteForById(@PathVariable Long id) throws PersonNotFoundException {
 
