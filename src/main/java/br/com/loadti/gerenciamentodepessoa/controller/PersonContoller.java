@@ -41,9 +41,15 @@ public class PersonContoller {
         return personService.findById(id);
     }
 
+    @GetMapping("{id}")
+    public MessageResponseDTO updateByID(@PathVariable Long id, @RequestBody PersonDTO personDTO) throws PersonNotFoundException {
+
+        return  personService.updateById(id, personDTO);
+    }
+
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteForById(@PathVariable Long id) {
+    public void deleteForById(@PathVariable Long id) throws PersonNotFoundException {
 
         personService.delete(id);
 
